@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulSync - Mental Health Chatbot</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #6a11cb, #2575fc, #ff6ec7, #42e695);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #f3f3f3;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+    }
+
+    nav h1 {
+      font-size: 1.8em;
+      color: #ffda79;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: #f3f3f3;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ffda79;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero h2 {
+      font-size: 3em;
+      animation: fadeInDown 2s ease;
+    }
+
+    .hero p {
+      font-size: 1.3em;
+      margin: 20px 0;
+      animation: fadeInUp 2s ease;
+    }
+
+    .btn {
+      background: #ffda79;
+      color: #333;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #fff176;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section Styling */
+    section {
+      padding: 100px 60px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2.2em;
+      margin-bottom: 40px;
+      color: #ffda79;
+    }
+
+    /* Features Grid (3 x 2 layout) */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      justify-items: center;
+    }
+
+    .feature-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 25px rgba(255, 218, 121, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+      font-size: 0.9em;
+    }
+
+    /* Floating Chat Button */
+    #chatbot-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #ffda79;
+      border: none;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      box-shadow: 0 0 20px rgba(255, 218, 121, 0.7);
+      cursor: pointer;
+      font-size: 1.6em;
+      transition: transform 0.3s ease;
+      z-index: 20;
+    }
+
+    #chatbot-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Light Calm Full-Screen Chatbot */
+    #chatbot-box {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #b0e9f9, #f3c4fb, #f8e5b2, #b4f0dc);
+      background-size: 400% 400%;
+      animation: calmGradient 15s ease infinite;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px;
+      z-index: 999;
+    }
+
+    @keyframes calmGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #chatbot-box header {
+      color: #444;
+      font-size: 1.7em;
+      font-weight: 600;
+      margin-top: 40px;
+    }
+
+    #chatbot-messages {
+      flex: 1;
+      width: 100%;
+      max-width: 700px;
+      overflow-y: auto;
+      margin: 30px 0;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 15px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .message {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .user {
+      text-align: right;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .bot {
+      text-align: left;
+      color: #444;
+    }
+
+    #chatbot-input {
+      width: 80%;
+      max-width: 500px;
+      padding: 12px;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      font-size: 1em;
+    }
+
+    #send-btn, #close-btn {
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+      margin-left: 10px;
+    }
+
+    #send-btn:hover, #close-btn:hover {
+      background: #333;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1>SoulSync</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="home">
+    <h2>Welcome to SoulSync 💜</h2>
+    <p>Your AI-powered mental health companion — here to listen, support, and guide you.</p>
+    <button class="btn" onclick="toggleChat()">Chat with SoulSync</button>
+  </section>
+
+  <section id="about">
+    <h2>About SoulSync</h2>
+    <p>SoulSync helps you manage stress, anxiety, and emotions with AI-powered empathy. It's like your pocket therapist — always available, always understanding.</p>
+  </section>
+
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="feature-card"><h3>🧠 Emotional Support</h3><p>Receive kind, empathetic responses whenever you need.</p></div>
+      <div class="feature-card"><h3>🪷 Mindfulness</h3><p>Get daily meditation and breathing exercises for peace.</p></div>
+      <div class="feature-card"><h3>📈 Mood Tracker</h3><p>Visualize your emotional journey and progress.</p></div>
+      <div class="feature-card"><h3>🌙 Sleep Help</h3><p>Guided relaxation and sleep routines for deep rest.</p></div>
+      <div class="feature-card"><h3>💬 Anonymous Chat</h3><p>Speak freely — your identity and privacy are safe.</p></div>
+      <div class="feature-card"><h3>🎧 Calm Sounds</h3><p>Listen to nature sounds and healing music anytime.</p></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <strong>soul.sync@gmail.com</strong></p>
+  </section>
+
+  <footer>
+    <p>© 2025 SoulSync | Your Mind Matters 💜</p>
+  </footer>
+
+  <button id="chatbot-btn" onclick="toggleChat()">💬</button>
+
+  <div id="chatbot-box">
+    <header>SoulSync Chatbot 💫</header>
+    <div id="chatbot-messages">
+      <div class="bot message">Hey there 🌿 How are you feeling today?</div>
+    </div>
+    <div>
+      <input type="text" id="chatbot-input" placeholder="Type your message..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button id="send-btn" onclick="sendMessage()">Send</button>
+      <button id="close-btn" onclick="toggleChat()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const chatbotBox = document.getElementById("chatbot-box");
+    const messages = document.getElementById("chatbot-messages");
+    const input = document.getElementById("chatbot-input");
+
+    function toggleChat() {
+      chatbotBox.style.display = chatbotBox.style.display === "flex" ? "none" : "flex";
+    }
+
+    function sendMessage() {
+      const text = input.value.trim();
+      if (!text) return;
+
+      addMessage(text, "user");
+      input.value = "";
+
+      setTimeout(() => {
+        let reply;
+        if (text.toLowerCase().includes("sad")) reply = "I'm here for you 💜 Let's take a deep breath together — would you like a relaxation tip?";
+        else if (text.toLowerCase().includes("happy")) reply = "That's amazing! Keep that positivity flowing 🌈";
+        else if (text.toLowerCase().includes("stress")) reply = "Try this: inhale 4s, hold 4s, exhale 4s 🌬️ You got this.";
+        else reply = "I'm listening 👂 Tell me more, I'm here for you.";
+
+        addMessage(reply, "bot");
+      }, 600);
+    }
+
+    function addMessage(text, sender) {
+      const div = document.createElement("div");
+      div.classList.add("message", sender);
+      div.textContent = text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+  </script>
+</body>
+</html>
