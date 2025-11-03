@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -16,18 +16,22 @@ body {
 }
 
 @keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-
-/* Navbar */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 60px;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(8px);
   position: fixed;
   top: 0;
@@ -98,13 +102,25 @@ nav ul li a:hover {
 }
 
 @keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Sections */
@@ -190,9 +206,15 @@ footer {
 }
 
 @keyframes calmGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 #chatbot-box header {
@@ -211,7 +233,7 @@ footer {
   padding: 20px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 15px;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .message {
@@ -240,7 +262,8 @@ footer {
   font-size: 1em;
 }
 
-#send-btn, #close-btn {
+#send-btn,
+#close-btn {
   background: #444;
   color: #fff;
   border: none;
@@ -252,7 +275,8 @@ footer {
   margin-left: 10px;
 }
 
-#send-btn:hover, #close-btn:hover {
+#send-btn:hover,
+#close-btn:hover {
   background: #333;
   transform: scale(1.05);
 }
