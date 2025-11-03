@@ -16,9 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Serve static files
 app.use(express.static(path.join(__dirname)));
 
-// Import chatbot routes
-const chatbotRoutes = require('./routes/chatbot');
-app.use('/api', chatbotRoutes);
+
 
 // Serve HTML pages
 app.get('/', (req, res) => {
