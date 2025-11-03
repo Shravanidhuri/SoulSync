@@ -1,4 +1,4 @@
-# 🌸 SoulSync- Where Technology Listens With Emphathy
+# 🌸 SoulSync- Where Technology Listens With Emphathy....💖
 
 ## 📖 About  
 SoulSync is a simple and elegant web application designed to connect hearts through meaningful conversations. It allows users to chat, interact, and experience AI-powered conversations in a calm and minimalistic interface.
