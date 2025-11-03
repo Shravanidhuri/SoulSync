@@ -14,5 +14,5 @@ SoulSync is a simple and elegant web application designed to connect hearts thro
 ## 🛠️ Tech Stack  
 - **Frontend:** HTML5, CSS3, JavaScript  
 - **Backend:** Node.js, Express.js  
-- **Database:** Mongo db 
+- **Database:** SQLITE
 
